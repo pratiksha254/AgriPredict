@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AgroMonitoring Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="t2.css">
+</head>
+<body>
+
+<div id="controls">
+  <button onclick="savePolygon()">Save Polygon</button>
+  <button onclick="listPolygons()">List My Polygons</button>
+</div>
+<div id="map"></div>
+
+<h2>📊 Field Insights</h2>
+<div class="dashboard">
+  <div class="card" id="satImage">
+    <h3>NDVI Image</h3>
+    <img src="" alt="NDVI image">
+  </div>
+
+  <div class="card">
+    <h3>Soil Data</h3>
+    <table class="data-table" id="soilTable"></table>
+    <canvas id="soilMoistureChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>NDVI Trend</h3>
+    <canvas id="ndviChart"></canvas>
+  </div>
+
+  <div class="card">
+    <h3>Precipitation (Last 7 Days)</h3>
+    <canvas id="precipChart"></canvas>
+  </div>
+</div>
+
+<pre id="output">Draw a polygon on the map, then click "Save Polygon".</pre>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+<script src="t2.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPredict - Forecast Analysis Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="forecast.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            AgriPredict
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                      Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="predict.html" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    Yield Prediction
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="forecast.html" class="nav-link active">
+                    <i class="fas fa-chart-bar"></i>
+                    Forecast Analysis
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="weather.html" class="nav-link">
+                    <i class="fas fa-cloud-sun"></i>
+                    Weather Forecast
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="alerts.html" class="nav-link">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Risk Alerts
+                </a>
+            </li>
+        </ul>
+
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="welcome-text">
+                <h1>Forecast Analysis</h1>
+                <p>Comprehensive weather and yield forecasting insights</p>
+            </div>
+            <div class="user-profile">
+                <div class="profile-avatar">F</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Overview -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon blue">
+                        <i class="fas fa-cloud-rain"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Rainfall Forecast</div>
+                        <div class="card-value" id="rainfallForecast">150mm</div>
+                        <div class="card-subtitle">Next 30 days</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Temperature</div>
+                        <div class="card-value" id="tempForecast">25°C</div>
+                        <div class="card-subtitle">Average</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon green">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Yield Trend</div>
+                        <div class="card-value" id="yieldTrend">+12%</div>
+                        <div class="card-subtitle">vs Last Season</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon purple">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Crop Health</div>
+                        <div class="card-value" id="cropHealth">87%</div>
+                        <div class="card-subtitle">NDVI Index</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-line"></i>
+                    Rainfall vs Yield Correlation
+                </h3>
+                <div class="chart-container">
+                    <canvas id="forecastChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-area"></i>
+                    Seasonal Yield Trends
+                </h3>
+                <div class="chart-container">
+                    <canvas id="seasonalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Heatmap Section -->
+        <div class="heatmap-section">
+            <h2 class="section-title">
+                <i class="fas fa-th"></i>
+                Field Productivity Heatmap
+            </h2>
+            <div class="heatmap" id="heatmap"></div>
+            <div class="heatmap-legend">
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #d4edda;"></div>
+                    <span>Low Productivity</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #c3e6cb;"></div>
+                    <span>Medium</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #a8e6cf;"></div>
+                    <span>High</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #4caf50;"></div>
+                    <span>Excellent</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2 class="section-title">
+                <i class="fas fa-chart-pie"></i>
+                Forecast Statistics
+            </h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">95%</div>
+                    <div class="stat-label">Prediction Accuracy</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">24/7</div>
+                    <div class="stat-label">Real-time Monitoring</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">50+</div>
+                    <div class="stat-label">Data Points Analyzed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">Weather Models</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="forecast.js"></script>
+</body>
+</html>

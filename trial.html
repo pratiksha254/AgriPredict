@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoilGrids API - Simple Integration</title>
+    <link rel="stylesheet" href="trial.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🌱 Soil Data Lookup</h1>
+        
+        <form id="soilForm">
+            <div class="form-group">
+                <label for="latitude">Latitude:</label>
+                <input type="number" id="latitude" step="any" placeholder="e.g., 19.9975" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="longitude">Longitude:</label>
+                <input type="number" id="longitude" step="any" placeholder="e.g., 73.7898" required>
+            </div>
+            
+            <button type="submit">Get Soil Data</button>
+        </form>
+
+        <div id="loading">🔄 Loading soil data...</div>
+        <div id="error"></div>
+        <div id="results"></div>
+    </div>
+
+    <script src="trial.js"></script>
+</body>
+</html>

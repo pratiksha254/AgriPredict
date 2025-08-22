@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPredict - Weather Forecast</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="weather.css">
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><i class="fas fa-seedling"></i>AgriPredict</div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link"><i class="fas fa-home"></i>Home</a></li>
+            <li class="nav-item"><a href="predict.html" class="nav-link"><i class="fas fa-chart-line"></i>Yield Prediction</a></li>
+            <li class="nav-item"><a href="forecast.html" class="nav-link"><i class="fas fa-chart-bar"></i>Forecast Analysis</a></li>
+            <li class="nav-item"><a href="weather.html" class="nav-link active"><i class="fas fa-cloud-sun"></i>Weather Forecast</a></li>
+            <li class="nav-item"><a href="alerts.html" class="nav-link"><i class="fas fa-exclamation-triangle"></i>Risk Alerts</a></li>
+        </ul>
+        <button class="logout-btn"><i class="fas fa-sign-out-alt"></i>Logout</button>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="welcome-text">
+                <h1>Weather Forecast</h1>
+                <p>Real-time weather data for agricultural planning</p>
+            </div>
+            <div class="user-profile">
+                <div class="profile-avatar">F</div>
+            </div>
+        </div>
+
+        <div class="location-section">
+            <h2 class="section-title"><i class="fas fa-map-marker-alt"></i>Location Search</h2>
+            <div class="search-container">
+                <input type="text" id="locationInput" class="search-input" placeholder="Enter city name (e.g., London, New York, Mumbai)" value="Mumbai">
+                <button class="search-btn" onclick="getWeather()"><i class="fas fa-search"></i>Get Weather</button>
+            </div>
+            <div style="background: #f8f9fa; padding: 1rem; border-radius: 10px; font-size: 0.9rem; color: #666;">
+                <i class="fas fa-info-circle"></i> Enter a city name to get current weather and 5-day forecast
+            </div>
+        </div>
+
+        <div class="current-weather" id="currentWeather" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-sun"></i>Current Weather</h2>
+            <div class="weather-main">
+                <div class="weather-icon">
+                    <img id="weatherIcon" src="" alt="Weather Icon">
+                </div>
+                <div class="weather-info">
+                    <h2 id="temperature">--°C</h2>
+                    <div class="weather-description" id="weatherDescription">--</div>
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <i class="fas fa-thermometer-half"></i>
+                            <span>Feels like: <span id="feelsLike">--°C</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-tint"></i>
+                            <span>Humidity: <span id="humidity">--%</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Wind: <span id="windSpeed">-- m/s</span></span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-eye"></i>
+                            <span>Visibility: <span id="visibility">-- km</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="forecast-section" id="forecastSection" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-calendar-alt"></i>5-Day Forecast</h2>
+            <div class="forecast-grid" id="forecastGrid"></div>
+        </div>
+
+        <div class="insights-section" id="insightsSection" style="display: none;">
+            <h2 class="section-title"><i class="fas fa-leaf"></i>Agricultural Insights</h2>
+            <div class="insights-grid" id="insightsGrid"></div>
+        </div>
+
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title"><i class="fas fa-chart-line"></i>Temperature Trends</h3>
+                <div class="chart-container">
+                    <canvas id="temperatureChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3 class="chart-title"><i class="fas fa-chart-bar"></i>Rainfall Probability</h3>
+                <div class="chart-container">
+                    <canvas id="rainfallChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="weather.js"></script>
+</body>
+</html>

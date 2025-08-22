@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPredict - Yield Prediction Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="predict.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            AgriPredict
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="predict.html" class="nav-link active">
+                    <i class="fas fa-chart-line"></i>
+                    Yield Prediction
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="forecast.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    Forecast Analysis
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="weather.html" class="nav-link">
+                    <i class="fas fa-cloud-sun"></i>
+                    Weather Forecast
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="alerts.html" class="nav-link">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Risk Alerts
+                </a>
+            </li>
+        </ul>
+
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="welcome-text">
+                <h1>Welcome, Farmer!</h1>
+                <p>Here's your crop yield prediction dashboard</p>
+            </div>
+            <div class="user-profile">
+                <div class="profile-avatar">F</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Overview -->
+        <div class="dashboard-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon blue">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Predicted Yield</div>
+                        <div class="card-value" id="predictedYield">0</div>
+                        <div class="card-subtitle">kg/hectare</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon green">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Crop Health</div>
+                        <div class="card-value" id="cropHealth">85%</div>
+                        <div class="card-subtitle">Based on NDVI</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-icon orange">
+                        <i class="fas fa-thermometer-half"></i>
+                    </div>
+                    <div>
+                        <div class="card-title">Weather Risk</div>
+                        <div class="card-value" id="weatherRisk">Low</div>
+                        <div class="card-subtitle">Current conditions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prediction Form -->
+        <div class="prediction-section">
+            <h2 class="section-title">
+                <i class="fas fa-calculator"></i>
+                Yield Prediction Calculator
+            </h2>
+            
+            <form id="predictionForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <select id="region" required>
+                            <option value="">Select Region</option>
+                            <option value="A">Region A</option>
+                            <option value="B">Region B</option>
+                            <option value="C">Region C</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="crop">Crop Type</label>
+                        <select id="crop" required>
+                            <option value="">Select Crop</option>
+                            <option value="rice">Rice</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="maize">Maize</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rainfall">Rainfall (mm)</label>
+                        <input type="number" id="rainfall" min="0" max="1000" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="temperature">Temperature (°C)</label>
+                        <input type="number" id="temperature" min="-10" max="50" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="humidity">Humidity (%)</label>
+                        <input type="number" id="humidity" min="0" max="100" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="soilCarbon">Soil Organic Carbon (%)</label>
+                        <input type="number" id="soilCarbon" min="0" max="10" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="soilPh">Soil pH</label>
+                        <input type="number" id="soilPh" min="0" max="14" step="0.1" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ndvi">NDVI (0-1)</label>
+                        <input type="number" id="ndvi" min="0" max="1" step="0.01" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="predict-btn">
+                    <i class="fas fa-magic"></i>
+                    Predict Yield
+                </button>
+            </form>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultCard">
+            <h2 class="section-title">
+                <i class="fas fa-chart-pie"></i>
+                Prediction Results
+            </h2>
+            
+            <div class="result-card">
+                <div class="yield-value" id="yieldResult">0</div>
+                <div class="yield-label">Predicted Yield (kg/hectare)</div>
+                
+                <div class="kpi-grid">
+                    <div class="kpi-item">
+                        <div class="kpi-value" id="rainfallKPI">Normal</div>
+                        <div class="kpi-label">Rainfall Level</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value" id="tempKPI">Optimal</div>
+                        <div class="kpi-label">Temperature</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value" id="soilKPI">Good</div>
+                        <div class="kpi-label">Soil Quality</div>
+                    </div>
+                    <div class="kpi-item">
+                        <div class="kpi-value" id="ndviKPI">Healthy</div>
+                        <div class="kpi-label">Crop Health</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-line"></i>
+                    Yield Trends
+                </h3>
+                <div class="chart-container">
+                    <canvas id="yieldTrendChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-doughnut"></i>
+                    Factor Impact
+                </h3>
+                <div class="chart-container">
+                    <canvas id="factorImpactChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="predict.js"></script>
+</body>
+</html>

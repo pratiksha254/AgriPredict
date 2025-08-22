@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriPredict - Risk Alerts Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="alerts.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-seedling"></i>
+            AgriPredict
+        </div>
+        
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="predict.html" class="nav-link">
+                    <i class="fas fa-chart-line"></i>
+                    Yield Prediction
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="forecast.html" class="nav-link">
+                    <i class="fas fa-chart-bar"></i>
+                    Forecast Analysis
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="weather.html" class="nav-link">
+                    <i class="fas fa-cloud-sun"></i>
+                    Weather Forecast
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="alerts.html" class="nav-link active">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Risk Alerts
+                </a>
+            </li>
+        </ul>
+
+        <button class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <div class="header">
+            <div class="welcome-text">
+                <h1>Risk Alerts</h1>
+                <p>Monitor and manage agricultural risks in real-time</p>
+            </div>
+            <div class="user-profile">
+                <div class="profile-avatar">F</div>
+            </div>
+        </div>
+
+        <!-- Risk Summary -->
+        <div class="risk-summary">
+            <h2 class="section-title">
+                <i class="fas fa-shield-alt"></i>
+                Risk Overview
+            </h2>
+            
+            <div class="risk-stats">
+                <div class="risk-stat critical">
+                    <div class="risk-count critical" id="criticalCount">3</div>
+                    <div class="risk-label">Critical Alerts</div>
+                </div>
+                <div class="risk-stat warning">
+                    <div class="risk-count warning" id="warningCount">5</div>
+                    <div class="risk-label">Warnings</div>
+                </div>
+                <div class="risk-stat safe">
+                    <div class="risk-count safe" id="safeCount">12</div>
+                    <div class="risk-label">Safe Conditions</div>
+                </div>
+            </div>
+
+            <button class="refresh-btn" onclick="generateAlerts()">
+                <i class="fas fa-sync-alt"></i>
+                Refresh Alerts
+            </button>
+        </div>
+
+        <!-- Alerts Grid -->
+        <div class="alerts-section">
+            <h2 class="section-title">
+                <i class="fas fa-bell"></i>
+                Active Alerts
+            </h2>
+            
+            <div class="alerts-grid" id="alertsContainer">
+                <!-- Alerts will be generated here -->
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section">
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-pie"></i>
+                    Risk Distribution
+                </h3>
+                <div class="chart-container">
+                    <canvas id="riskDistributionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3 class="chart-title">
+                    <i class="fas fa-chart-line"></i>
+                    Alert Trends
+                </h3>
+                <div class="chart-container">
+                    <canvas id="alertTrendsChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="alerts.js"></script>
+</body>
+</html>
