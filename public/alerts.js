@@ -1,6 +1,7 @@
 let riskDistributionChart = null;
 let alertTrendsChart = null;
 
+
 function generateAlerts() {
     const savedData = localStorage.getItem('agripredict_form_data');
     let alerts = [];
