@@ -18,15 +18,15 @@ app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json());
 
-// Serve static frontend
+
 app.use(express.static(__dirname));
 
-// Health check
+
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', time: new Date().toISOString() });
 });
 
-// Proxy: OpenWeather (no CORS/key exposure in frontend)
+
 app.get('/api/weather', async (req, res) => {
   try {
     const { q } = req.query;
@@ -57,7 +57,7 @@ app.get('/api/forecast', async (req, res) => {
   }
 });
 
-// Proxy: SoilGrids
+
 app.get('/api/soil', async (req, res) => {
   try {
     const { lat, lon, property, depth = '0-5cm' } = req.query;
@@ -71,7 +71,7 @@ app.get('/api/soil', async (req, res) => {
   }
 });
 
-// Fallback to index for root
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
